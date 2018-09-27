@@ -35,10 +35,25 @@ const addItem = (userId, itemName, itemDeadline, itemCreated, response) => {
     })
     .catch(function(error) {
         console.error("Error adding document: ", error);
-        response.send('addItem failed')
+        response.status(500).send('Error adding document');
     });
 }
 
+const getItem = (itemId, response) => {
+  db.collection("items").doc(itemId)
+  .get()
+  .then((doc) => {
+    if (doc.exists) {
+      console.log("Document data:", doc.data());
+      response.send(doc.data());
+    } else {
+      console.log("No such document!");
+      response.status(404).send('No such document');
+    }
+  });
+}
+
 module.exports = {
-  addItem
+  addItem,
+  getItem,
 };

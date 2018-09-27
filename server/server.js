@@ -26,7 +26,10 @@ app.post('/api/post/', (req, res) => {
 })
 
 // API2: Read a TODO item with given TODO ID
-// app.get('/api/get')
+app.get('/api/get/:itemId', (req, res) => {
+  const itemId = req.params.itemId;
+  db.getItem(itemId, res);
+})
 
 // server listen
 const port = 8080;
