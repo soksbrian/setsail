@@ -1,7 +1,10 @@
 const express = require('express');
 const path = require('path');
-const app = express();
+const faker = require('faker');
+const db = require('../database/database.js');
 
+// Initialize Express server
+const app = express();
 
 // logger middleware
 app.use((req, res, next) => {
@@ -13,7 +16,9 @@ app.use((req, res, next) => {
 app.use('/', express.static(path.join(__dirname, '../public')));
 
 // handlers
-
+app.post('/api/post/', (req, res) => {
+  db.addItem();
+})
 
 // server listen
 const port = 8080;
