@@ -4,7 +4,7 @@
   "description": "mini project",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "server": "nodemon server/server.js"
   },
   "repository": {
     "type": "git",
@@ -16,5 +16,9 @@
   "bugs": {
     "url": "https://github.com/soksbrian/setsail/issues"
   },
-  "homepage": "https://github.com/soksbrian/setsail#readme"
+  "homepage": "https://github.com/soksbrian/setsail#readme",
+  "dependencies": {
+    "express": "^4.16.3",
+    "nodemon": "^1.18.4"
+  }
 }
