@@ -31,6 +31,13 @@ app.get('/api/get/:itemId', (req, res) => {
   db.getItem(itemId, res);
 })
 
+// API3: Change deadline of a TODO item given TODO ID and new deadline
+app.patch('/api/patch/:itemId', (req, res) => {
+  const itemId = req.params.itemId;
+  const newDeadline = faker.date.future();
+  db.changeDeadline(itemId, newDeadline, res);
+})
+
 // server listen
 const port = 8080;
 app.listen(port, () => console.log(`Listening to port ${port}...`));
