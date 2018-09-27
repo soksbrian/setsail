@@ -22,17 +22,20 @@ db.settings({
 });
 
 // Helper functions
-const addItem = (/*userId, itemName, itemDeadline, itemCreated, response*/) => {
-  db.collection("users").add({
-    first: "Ada",
-    last: "Lovelace",
-    born: 1815
+const addItem = (userId, itemName, itemDeadline, itemCreated, response) => {
+  db.collection("items").add({
+    user_id: userId,
+    item_name: itemName,
+    item_deadline: itemDeadline,
+    item_created: itemCreated
     })
     .then(function(docRef) {
         console.log("Document written with ID: ", docRef.id);
+        response.send(docRef.id);
     })
     .catch(function(error) {
         console.error("Error adding document: ", error);
+        response.send('addItem failed')
     });
 }
 
