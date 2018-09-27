@@ -1,9 +1,10 @@
 const firebase = require('firebase');
 require('firebase/firestore');
+const key = require('./apiKey.js');
 
 // Initialize Firebase
 var config = {
-  apiKey: "AIzaSyAc3EavKu5bGD3tdBATcWa42TKjvpt5tWs",
+  apiKey: key,
   authDomain: "setsailsoftware.firebaseapp.com",
   databaseURL: "https://setsailsoftware.firebaseio.com",
   projectId: "setsailsoftware",
