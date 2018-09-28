@@ -81,7 +81,7 @@ const listItems = (userId, response) => {
     })
     .catch((error) => {
       console.log('Error listing documents: ', error);
-      response.send('Error listing documents');
+      response.status(500).send('Error listing documents');
     })
 }
 
