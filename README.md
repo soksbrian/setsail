@@ -2,6 +2,7 @@ Set Sail A.I. Mini Project
 ===
 
 Project can be forked and downloaded from https://github.com/soksbrian/setsail
+Postman API Collection: https://www.getpostman.com/collections/3c5e0e48ca1d6acf53db
 ---
 
 Author
