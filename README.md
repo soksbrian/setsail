@@ -28,3 +28,7 @@ package.json
 README.md
 ```
 
+Once you have cloned the directory to your local machine, follow the directions below:
+---
+1. ```cd``` into ```setsail``` directory
+
