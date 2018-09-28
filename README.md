@@ -32,9 +32,10 @@ Once you have cloned the directory to your local machine, follow the directions 
 ---
 1. ```cd``` into ```setsail``` directory
 2. Run ```npm install```
-3. Run ```npm run server```
-4. The server will be up and listening on PORT 8080, ready for Postman requests
-5. Open up Chrome browser and navigate to ```localhost:8080``` for some fun =)
+3. Open up ```database/apiKey_example.js``` and follow instructions to replace API key
+4. Run ```npm run server```
+5. The server will be up and listening on PORT 8080, ready for Postman requests
+6. Open up Chrome browser and navigate to ```localhost:8080``` for some fun =)
 
 Thanks for Visiting !
 ===
