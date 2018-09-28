@@ -30,12 +30,11 @@ const addItem = (userId, itemName, itemDeadline, itemCreated, response) => {
     item_created: itemCreated
     })
     .then(function(docRef) {
-        console.log('Document written with ID: ', docRef.id);
-        response.send(docRef.id);
+      response.send(docRef.id);
     })
     .catch(function(error) {
-        console.error('Error adding document: ', error);
-        response.status(500).send('Error adding document');
+      console.log('Error adding document: ', error)
+      response.status(500).send('Error adding document');
     });
 }
 
@@ -44,10 +43,8 @@ const getItem = (itemId, response) => {
   .get()
   .then((doc) => {
     if (doc.exists) {
-      console.log('Document data:', doc.data());
       response.send(doc.data());
     } else {
-      console.log('No such document!');
       response.status(404).send('No such document');
     }
   });
@@ -56,17 +53,29 @@ const getItem = (itemId, response) => {
 const changeDeadline = (itemId, newDeadline, response) => {
   db.collection('items').doc(itemId).update({item_deadline: newDeadline})
   .then(() => {
-    console.log('Document successfully updated!');
     getItem(itemId, response);
   })
   .catch((error) => {
-    console.error('Error updating document: ', error);
+    console.log('Error updating document: ', error);
     response.status(500).send('Error updating document');
   });
+}
+
+const removeItem = (itemId, response) => {
+  db.collection('items').doc(itemId).delete()
+  .then(() => {
+    console.log('Document deleted successfully');
+    response.send('Document deleted successfully');
+  })
+  .catch((error) => {
+    console.log('Error deleting document: ', error);
+    response.status(500).send('Error deleting document');
+  })
 }
 
 module.exports = {
   addItem,
   getItem,
   changeDeadline,
+  removeItem,
 };

@@ -38,6 +38,12 @@ app.patch('/api/patch/:itemId', (req, res) => {
   db.changeDeadline(itemId, newDeadline, res);
 })
 
+// API4: Delete a TODO item given TODO ID
+app.delete('/api/delete/:itemId', (req, res) => {
+  const itemId = req.params.itemId;
+  db.removeItem(itemId, res);
+})
+
 // server listen
 const port = 8080;
 app.listen(port, () => console.log(`Listening to port ${port}...`));
