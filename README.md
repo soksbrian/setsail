@@ -8,6 +8,13 @@ Author
 ---
 Brian So
 
+Dependencies
+---
+* Express.js
+* Faker.js
+* Firebase
+* Nodemon
+
 File List
 ---
 ```
