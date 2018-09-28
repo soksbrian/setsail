@@ -6,7 +6,7 @@ const db = require('../database/database.js');
 // Initialize Express server
 const app = express();
 
-// logger middleware
+// Logger middleware
 app.use((req, res, next) => {
   console.log(req.method, req.url);
   next();
