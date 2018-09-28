@@ -44,6 +44,12 @@ app.delete('/api/delete/:itemId', (req, res) => {
   db.removeItem(itemId, res);
 })
 
+// API5: List all TODO items given User ID
+app.get('/api/list/:userId', (req, res) => {
+  const userId = Number(req.params.userId);
+  db.listItems(userId, res);
+})
+
 // server listen
 const port = 8080;
 app.listen(port, () => console.log(`Listening to port ${port}...`));

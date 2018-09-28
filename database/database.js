@@ -39,38 +39,50 @@ const addItem = (userId, itemName, itemDeadline, itemCreated, response) => {
 }
 
 const getItem = (itemId, response) => {
-  db.collection('items').doc(itemId)
-  .get()
-  .then((doc) => {
-    if (doc.exists) {
-      response.send(doc.data());
-    } else {
-      response.status(404).send('No such document');
-    }
-  });
+  db.collection('items').doc(itemId).get()
+    .then((doc) => {
+      if (doc.exists) {
+        response.send(doc.data());
+      } else {
+        response.status(404).send('No such document');
+      }
+    });
 }
 
 const changeDeadline = (itemId, newDeadline, response) => {
   db.collection('items').doc(itemId).update({item_deadline: newDeadline})
-  .then(() => {
-    getItem(itemId, response);
-  })
-  .catch((error) => {
-    console.log('Error updating document: ', error);
-    response.status(500).send('Error updating document');
-  });
+    .then(() => {
+      getItem(itemId, response);
+    })
+    .catch((error) => {
+      console.log('Error updating document: ', error);
+      response.status(500).send('Error updating document');
+    });
 }
 
 const removeItem = (itemId, response) => {
   db.collection('items').doc(itemId).delete()
-  .then(() => {
-    console.log('Document deleted successfully');
-    response.send('Document deleted successfully');
-  })
-  .catch((error) => {
-    console.log('Error deleting document: ', error);
-    response.status(500).send('Error deleting document');
-  })
+    .then(() => {
+      console.log('Document deleted successfully');
+      response.send('Document deleted successfully');
+    })
+    .catch((error) => {
+      console.log('Error deleting document: ', error);
+      response.status(500).send('Error deleting document');
+    })
+}
+
+const listItems = (userId, response) => {
+  db.collection('items').where('user_id', '==', userId).get()
+    .then((querySnapshot) => {
+      let result = [];
+      querySnapshot.forEach((doc) => result.push(doc.data()));
+      response.send(result);
+    })
+    .catch((error) => {
+      console.log('Error listing documents: ', error);
+      response.send('Error listing documents');
+    })
 }
 
 module.exports = {
@@ -78,4 +90,5 @@ module.exports = {
   getItem,
   changeDeadline,
   removeItem,
+  listItems
 };
